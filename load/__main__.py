@@ -36,20 +36,20 @@ if __name__ == "__main__":
                 with NamedTemporaryFile(suffix='.csv', delete=True) as tmpfile:
                     tmpfile_csv_path = tmpfile.name
                     
-                    print(f"Loading from storage: {pg_table}")
-                    load_file_from_storage(tmpfile_csv_path, data_infos)
+                print(f"Loading from storage: {pg_table}")
+                load_file_from_storage(tmpfile_csv_path, data_infos)
+                
+                print(f"Loading to PG: {pg_table}")
+                load_file_to_pg(tmpfile_csv_path, pg_table, data_infos)
                     
-                    print(f"Loading to PG: {pg_table}")
-                    load_file_to_pg(tmpfile_csv_path, pg_table, data_infos)
-                    
-                    print("***")
+                print("***")
             elif  data_infos['file_format'] == 'shape':
                 with TemporaryDirectory() as tmpfolder, NamedTemporaryFile(suffix='.zip', delete=True) as tmpzipfile:
                     tmpfolder_name = tmpfolder
                     tmpzip_name = tmpzipfile.name
 
-                    print(f"Loading from storage: {pg_table}")
-                    load_shapefile_from_storage(tmpfolder_name, tmpzip_name, data_infos)
+                print(f"Loading from storage: {pg_table}")
+                load_shapefile_from_storage(tmpfolder_name, tmpzip_name, data_infos)
 
-                    print(f"Loading to PG: {pg_table}")
-                    load_shapefile_to_pg(tmpfolder_name, pg_table, data_infos)
+                print(f"Loading to PG: {pg_table}")
+                load_shapefile_to_pg(tmpfolder_name, pg_table, data_infos)
